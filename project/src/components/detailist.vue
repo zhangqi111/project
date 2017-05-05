@@ -1,5 +1,5 @@
 <template>
-	<div id="box_">
+	<div id="box">
 		<ul>
 			<li v-for="(item,index) in menudata" @click="gotoList(index)">
 				<a>{{item.name}}</a>
@@ -57,7 +57,7 @@
 </script>
 
 <style scoped>
-.box_{margin-bottom: 1.2rem!important;}
+#box{margin-bottom: 1.2rem!important;}
 ul li{
 	list-style: none;
 	width: 100%;

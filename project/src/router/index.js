@@ -8,10 +8,29 @@ import search from '@/components/search'
 import type from '@/components/type'
 import list from '@/components/list'
 import detailist from '@/components/detailist'
+import index from '@/components/index'
+import menu from '@/components/menu'
+import buzhou from '@/components/buzhou'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
+  	{
+      path: '/',
+      name: 'index',
+      component: index
+    },
+    {
+    	path: '/menu',
+    	name: 'menu',
+    	component: menu
+    },
+    {
+    	path:'/buzhou',
+    	name:'buzhou',
+    	component: buzhou
+    },
     {
       path: '/',
       name: 'Hello',

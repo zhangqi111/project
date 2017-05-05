@@ -36,35 +36,45 @@ export default {
   },
   mounted(){
   	var _this = this;
-  	$(".btn").click(function(){
-  		var name = $(".txt").val();
-  		var menuName = encodeURIComponent(name)
-  		var url = "http://apis.juhe.cn/cook/query.php?menu=" + menuName + "&dtype=&pn=&rn=&albums=&key=89ed2ade196e40cc58167a3e41d4b2c5";
-		$.ajax({
-			type:"GET",
-			async:true,
-			url:url,
-			dataType:"jsonp",
-			beforeSend:function(){
-				//$(".cards").html("");
-				var str = `
-					<div class="none" style="position: absolute;width:100%;height:100%;left:0;top:1.8rem;background:#fff;">
-						<img src="../../static/lazy.gif" style="position:absolute;width:3rem;height:3rem;left:50%;top:40%;transform:translateX(-50%) translateY(-50%)"/>
-					</div>
-				`;
-				$(".cards").append(str);
-			},
-			success:function(data){
-				$(".none").css("display","none")
-				var arr = data.result.data;
-				for(var i = 0;i < arr.length;i ++){
-					arr[i].flag=false;
-				}
-				_this.items = arr;
-			}
-		})
-
-  	})
+  	if(location.href.indexOf("?") > -1){
+  		var name = location.href.split("=")[1];
+  		name = decodeURIComponent(name)
+  		$(".txt").val(name);
+  		getBuZou();
+  	}else{
+  		getBuZou();
+  	}
+  	function getBuZou(){
+	  	$(".btn").click(function(){
+	  		var name = $(".txt").val();
+	  		var menuName = encodeURIComponent(name)
+	  		var url = "http://apis.juhe.cn/cook/query.php?menu=" + menuName + "&dtype=&pn=&rn=&albums=&key=89ed2ade196e40cc58167a3e41d4b2c5";
+				$.ajax({
+					type:"GET",
+					async:true,
+					url:url,
+					dataType:"jsonp",
+					beforeSend:function(){
+						//$(".cards").html("");
+						var str = `
+							<div class="none" style="position: absolute;width:100%;height:100%;left:0;top:1.8rem;background:#fff;">
+								<img src="../../static/lazy.gif" style="position:absolute;width:3rem;height:3rem;left:50%;top:40%;transform:translateX(-50%) translateY(-50%)"/>
+							</div>
+						`;
+						$(".cards").append(str);
+					},
+					success:function(data){
+						$(".none").css("display","none")
+						var arr = data.result.data;
+						for(var i = 0;i < arr.length;i ++){
+							arr[i].flag=false;
+						}
+						_this.items = arr;
+					}
+				})
+	
+	  	})
+  	}
   },
   methods:{
   	getId: function(index){
@@ -85,7 +95,7 @@ export default {
 .txt{text-indent:10px;width:4.5rem;height:0.6rem;border:1px solid #c1c0be;border-right: none;}
 .btn{width:1.5rem;height:0.6rem;border:1px solid #c1c0be;background: #fb7f37;border-left: none;color: #fff;}
 .menu_name{height:0.6rem;font-size:0.3rem!important;color:orange!important;line-height: 0.6rem!important;text-align: left;overflow: hidden;}
-.cards{margin-top:0;margin-bottom: 1.2rem;margin-top:1.1rem;}
+.ui.cards{margin-top:1.2rem!important;margin-bottom: 1.2rem!important;}
 .card{margin:5px auto!important;}
 .gray{color:#666!important;}
 .biaoti{font-size:0.4rem;text-align: left;font-weight: 600;color:#666;}

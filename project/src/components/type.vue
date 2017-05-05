@@ -1,9 +1,6 @@
 <template>
   <div class="hello">
     <p>{{ msg }}</p>
-    <div id="box">
-    	
-    </div>
     <ul>
     	
   	</ul>
@@ -53,10 +50,15 @@ export default {
 body{
 	background-color: #fff8f0;
 }
+
 .hello p{
 	color: #ccc;
 	text-align: center;
-	margin-top: 30px;
+	margin-bottom:0!important;
+	padding: 0.1rem;
+	font-size:0.25rem;
+	color:#666;
+	font-weight: 600;
 }
 .hello ul{
 	list-style: none;
@@ -66,8 +68,9 @@ body{
 	width: 35%!important;
 	float: left;
 	border: 1px solid #ccc;
-	padding:0.1rem;
 	text-align: center;
+	height:0.5rem;
+	padding:0.1rem;
 }
 .hello ul li:nth-child(odd){
 	margin: 2% 5% 2% 10%;
@@ -80,10 +83,10 @@ body{
 	text-decoration: none;
 	
 }
-#box{
+/*#box{
 	border-top:3px solid #ccc;
 	margin: 0px auto;
 	width: 330px;
 	margin-top: 20px;
-}
+}*/
 </style>

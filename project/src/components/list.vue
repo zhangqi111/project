@@ -59,7 +59,7 @@
 </script>	
 <style scoped>
 ul,li{list-style: none;}
-.list{margin-bottom: 1.2rem;}
+.list{margin-bottom: 1.2rem!important;}
 h3{font-size:20px;margin-bottom:0px!important;height:1rem;line-height: 1rem;color:orange;}
 p{font-size:15px;}
 li{height: auto!important;width: 90%!important;margin: 0 auto;}
