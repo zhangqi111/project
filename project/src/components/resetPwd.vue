@@ -1,23 +1,21 @@
 <template>
-  <div class="register">
+  <div class="resetPwd">
   	<p class="res-img"><img src="../assets/register/food.png"/></p>
   	<div class="regInfor">
 	  	<div class="reg-infor">
 	  		<p class="bd-white">
 	  			<input type="text" name="" id="" value="" class="txt" placeholder="手机号/邮箱"/>
 	  		</p>
-	  		<p class="bd-white">
-	  			<input type="password" class="pwd" id="" value="" placeholder="密码"/>
-	  		</p>
 	  		<p class="bd-white bd0">
-	  			<input type="password" class="pwd" id="pwd1" value="" placeholder="确认密码"/>
+	  			<input type="password" class="pwd" id="" value="" placeholder="密码"/>
 	  		</p>
 	  	</div>
   		<p class="btn">
-  			<input type="button" id="reg_btn" value="注册" class="reg"/>
+  			<input type="button" id="reg_btn" value="修改密码" class="reg"/>
   		</p>
   		<p class="links">
 	  		<a href="#/login" class="fr" id="login">立即登录</a>
+	  		<a href="#/register" class="fl" id="register">立即注册</a>
   		</p>
   	</div>
   	
@@ -28,15 +26,13 @@
 import jQuery from "../assets/js/jquery";
 window.jQuery = window.$ = $;
 export default {
-  name: 'register',
+  name: 'resetPwd',
   data () {
     return {
       
     }
   },
   mounted:()=>{
-  	var obj = {};
-  	var storage = window.localStorage;
   	$("#reg_btn").click(function(){
   		var tel = $(".txt").val();
   		var re = /^[1][3,4,5,7,8][0-9]{9}$/;
@@ -49,39 +45,30 @@ export default {
   		}else if(!rePwd.test(pwd)){
   			alert("密码格式不对");
   			return;
-  		}else if(pwd != pwd1){
-  			alert("两次密码输入不一致");
   		}else{
-  			var list = storage.getItem("data");
-  			if(list != null){
-  				var list = JSON.parse(list);
-  				if(tel in list){
-  					alert("该用户已经注册");
-  					return;
-  				}else{
-		  			obj[tel]=pwd;
-		  			console.log(obj)
-		  			var newObj = JSON.stringify(obj)
-		  			storage.setItem("data",newObj);
-		  			alert("注册成功")
-  				}
+  			var list = localStorage.getItem("data");
+  			var newList = JSON.parse(list);
+  			if(tel in newList){
+  				newList[tel] = pwd;
+  				var data = JSON.stringify(newList);
+  				localStorage.setItem("data",data)
+  				alert("修改密码成功")
+  				console.log(localStorage.getItem("data"))
   			}else{
-	  			obj[tel]=pwd;
-	  			console.log(obj)
-	  			var newObj = JSON.stringify(obj)
-	  			storage.setItem("data",newObj);
-	  			alert("注册成功")
+  				alert("您还没有注册");
   			}
   		}
   	})
+  	
+  	
   }
 }
 </script>
 <style scoped>
-.register{background:#e59f4a;width:100vw;height:92.7vh;padding:0;margin:0;position:relative;left:0;top:0;}
+.resetPwd{background:#e59f4a;width:100vw;height:92.7vh;padding:0;margin:0;position:relative;left:0;top:0;}
 .res-img{position:absolute;margin-top:50%;margin-left:50%;transform:translateX(-50%) translateY(-70%);}
 .regInfor{width:5rem;border-radius:5px;top:50%;left:50%;transform:translateX(-50%) translateY(-30%);position: absolute;}
-.reg-infor{border:2px solid #fff;width:5rem;height:2.46rem;border-radius:5px;}
+.reg-infor{border:2px solid #fff;width:5rem;height:1.648rem;border-radius:5px;}
 .bd-white{width:100%;border-bottom:2px solid #fff;height:0.8rem;position: relative;background: #f6c78f;}
 .bd0{border-bottom: 0;}
 input{border: 0;background: none;color: #fff;}

@@ -1,20 +1,16 @@
 <template>
   <div class="hello">
-    <register></register>
+  
   </div>
 </template>
 
 <script>
-import register from "./register"
 export default {
   name: 'hello',
   data () {
     return {
       
     }
-  },
-  components:{
-  	register
   }
 }
 </script>
